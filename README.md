@@ -36,7 +36,7 @@ Run the following command:
 node -v
 ```
 
-##  Linux
+#  Linux
 
 This guide will walk you through installing Node.js on your Linux machine.
 
