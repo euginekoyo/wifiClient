@@ -27,11 +27,11 @@ export default function Packages() {
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       >
         <Grid size={6} sx={{ width: "100%" }}>
-          <Item variant="h3" sx={{ mx: { xs: 4 }, borderRadius: 8 }}>
+          <Item variant="h3" sx={{ mx: { xs: 4 }, borderRadius: 2 }}>
             Packeges
           </Item>
         </Grid>
-        <Grid sx={{mx:{lg:10}}}>
+        <Grid>
           <Item sx={{ borderRadius: 2, boxShadow: 5 }}>
             <Stack
               direction={"row"}
@@ -43,7 +43,7 @@ export default function Packages() {
               <Avatar
                 sx={{
                   ml: { lg: -2, xs: -2 },
-                  mr: { lg: 2, xs:1},
+                  mr: 2,
                   borderRadius: { lg: 2, xs: 1 },
                   boxShadow: 10,
                 }}
@@ -56,8 +56,8 @@ export default function Packages() {
               </Typography>
               <IconButton
                 sx={{
-                  fontSize: { lg: 18,xs:14 },
-                  ml: { lg: 18, xs: 5  },
+                  fontSize: { lg: 18, xs: 16 },
+                  ml: { lg: 8, xs: 4 },
                   borderRadius: 3,
                   width: { lg: 60, xs: 60 },
                   bgcolor: "tomato",
