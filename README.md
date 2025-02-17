@@ -62,6 +62,7 @@ node -v
 ## Setting up client side project
  ```
 git clone https://github.com/euginekoyo/wifiClient.git
+cd wifiClient
 npm i 
 npm run dev
 ```
