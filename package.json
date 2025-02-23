@@ -15,10 +15,14 @@
     "@mui/icons-material": "^6.4.3",
     "@mui/material": "^6.4.3",
     "@toolpad/core": "^0.12.0",
+    "axios": "^1.7.9",
+    "framer-motion": "^12.4.4",
     "lucide-react": "^0.475.0",
+    "motion": "^12.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
+    "scrollreveal": "^4.0.9",
     "sweetalert2": "^11.16.0"
   },
   "devDependencies": {

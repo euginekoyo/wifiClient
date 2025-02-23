@@ -3,9 +3,12 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { IconButton, Paper, Typography } from "@mui/material";
 import { SendHorizontalIcon } from "lucide-react";
+import axios from "axios";
+import { motion } from "framer-motion";
 function Admin() {
   const [formData, setFormData] = React.useState({
-    name: "",
+    time: "",
+    description: "",
     price: "",
     status: "",
   });
@@ -17,24 +20,23 @@ function Admin() {
       [name]: value,
     });
   };
+  const API_URL = import.meta.env.VITE_SERVER_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5000/package",
-        formData,
-        {
+      const response = await axios.post(`${API_URL}/package`, formData, {
+        headers: {
           "Content-Type": "application/json",
-        }
-      );
-      const data = response.json();
-      console.table(data);
+        },
+      });
+      // console.table(response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error adding package:", error);
     }
   };
+
   return (
-    <>
+    <motion.div whileHover={{ scale: 1.3 }}>
       <Box
         mb={4}
         component={"form"}
@@ -70,10 +72,18 @@ function Admin() {
         <TextField
           fullWidth
           sx={{ marginTop: { xs: 2, lg: 2 }, width: { lg: 250, xs: 260 } }}
-          label=" name"
+          label=" Ative time"
           onChange={handleChange}
           size="small"
-          name="name"
+          name="time"
+        />
+        <TextField
+          fullWidth
+          sx={{ marginTop: { xs: 2, lg: 2 }, width: { lg: 250, xs: 260 } }}
+          label=" Description"
+          onChange={handleChange}
+          size="small"
+          name="description"
         />
         <TextField
           fullWidth
@@ -107,16 +117,18 @@ function Admin() {
           sx={{
             mt: 4,
             mx: { lg: 10 },
-            backgroundColor: "tomato",
+            backgroundColor: "#6E473B",
             borderRadius: 2,
             width: { lg: 200, xs: 150 },
           }}
         >
-          <span style={{ marginRight: 5 }}>Add</span>
-          <SendHorizontalIcon />
+          <motion.div whileHover={{ scale: 1.1, rotate: -2 }}>
+            <span style={{ marginRight: 5, my: 4 }}>Add</span>
+            <SendHorizontalIcon style={{ marginTop: 5 }} />
+          </motion.div>
         </IconButton>
       </Box>
-    </>
+    </motion.div>
   );
 }
 

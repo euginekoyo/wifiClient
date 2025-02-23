@@ -15,12 +15,12 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Login /> },
       { path: "/logout", element: <Login /> },
+      { path: "admin/dashboard", element: <AdminDashboard /> }, // ✅ Matches /layout/dashboard
       {
         path: "layout",
         element: <Layout />,
         children: [
           { path: "dashboard", element: <Dashboard /> }, // ✅ Matches /layout/dashboard
-          { path: "admin/dashboard", element: <AdminDashboard /> }, // ✅ Matches /layout/dashboard
           { path: "notification", element: <Notification /> }, // ✅ Matches /layout/notification
         ],
       },
