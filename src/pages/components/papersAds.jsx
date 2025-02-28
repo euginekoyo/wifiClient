@@ -15,9 +15,16 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
+  marginTop: 12,
+  fontFamily: "monospace",
   color: theme.palette.text.secondary,
   ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
+    backgroundColor: "#FFFFF7",
+    color: "black",
+  }),
+  ...theme.applyStyles("light", {
+    backgroundColor: "#111111",
+    color: "#ffffff",
   }),
 }));
 
@@ -37,41 +44,40 @@ export default function Ads() {
           </Item>
         </Grid>
         <Grid size={6} sx={{ width: "100%" }}>
-          <Item>
-            <Card sx={{ borderRadius: 5 }}>
-              <CardActionArea>
-                <CardContent>
-                  <Stack direction={"row"}>
-                    <Avatar sx={{ mr: { lg: 1, xs: 3 }, borderRadius: 2 }}>
-                      250
-                    </Avatar>
-                    <Typography
-                      gutterBottom
-                      variant="subtitle2"
-                      component="div"
-                      sx={{ml:{lg:-6,xs:-8}}}
-                    >
-                      Welcome Free 250 mbs
-                      <IconButton
-                        sx={{
-                          ml: { xs: 28, lg: 30 },
-                          mt: -5,
-                          backgroundColor: "green",
-                          borderRadius: 1,
-                        }}
-                      ></IconButton>
-                    </Typography>
-                  </Stack>
-                  <Typography sx={{ fontSize: { xs: 12 }, mt: { lg: -3 } }}>
-                    Valid till 20:20 19/2/2025
+          <Card sx={{ borderRadius: 5 }}>
+            <CardActionArea>
+              <CardContent>
+                <Stack direction={"row"} spacing={4}>
+                  <Avatar
+                    sx={{
+                      mr: { lg: 2, xs: 3 },
+                      borderRadius: 10,
+                      width: 50,
+                      height: 50,
+                      color: "white",
+                      bgcolor: "black",
+                    }}
+                  >
+                    250
+                  </Avatar>
+                  <Typography gutterBottom variant="subtitle2" component="div">
+                    Welcome Free 250 mbs
                   </Typography>
-                  <Typography sx={{ fontSize: { xs: 12 }, mt: { lg: 1 } }}>
-                    Total Usage (200 Mbs)
+                </Stack>
+                <Typography
+                  sx={{ fontSize: { xs: 12, lg: 16 }, mt: { lg: -3, xs: -3 } }}
+                >
+                  Valid till 20:20 19/2/2025
+                </Typography>
+                <Typography sx={{ fontSize: { xs: 12 } }}>
+                  Total Usage{" "}
+                  <Typography variant="subttitle1" color="error">
+                    (200 Mbs)
                   </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Item>
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
         </Grid>
       </Grid>
     </Box>

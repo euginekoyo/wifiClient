@@ -8,26 +8,34 @@ import { Avatar, IconButton, Stack, TextField } from "@mui/material";
 import axios from "axios";
 import { motion } from "framer-motion";
 import Modal from "@mui/material/Modal";
-import { Icon, SendHorizonalIcon } from "lucide-react";
+import { SendHorizontalIcon } from "lucide-react";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
   marginTop: 12,
+  fontFamily: "monospace",
   color: theme.palette.text.secondary,
   ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
+    backgroundColor: "#FFFFF7",
+    color: "black",
+  }),
+  ...theme.applyStyles("light", {
+    backgroundColor: "#111111",
+    color: "#ffffff",
   }),
 }));
 const API_URL = import.meta.env.VITE_SERVER_URL;
 const style = {
-  position: "absolute",
+  position: "relative",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 350,
-  bgcolor: "background.paper",
+  width: { lg: 500, xs: 350 },
+  bgcolor: "#000000",
+
+  color: "#000000",
   borderRadius: "20px",
   border: "2px solid #000",
   boxShadow: 24,
@@ -81,8 +89,9 @@ export default function Packages() {
             <motion.div
               whileHover={{ scale: 1.05, rotate: 2 }}
               whileInView={{ opacity: 1 }}
+              key={pkgs.id}
             >
-              <Item sx={{ borderRadius: 2, boxShadow: 5 }} key={pkgs.id}>
+              <Item sx={{ borderRadius: 2, boxShadow: 5 }}>
                 <Stack
                   direction={"row"}
                   sx={{
@@ -96,11 +105,13 @@ export default function Packages() {
                       mr: { lg: 2, xs: 1 },
                       my: 2,
                       borderRadius: { lg: 2, xs: 1 },
-                      width: { lg: 100 },
+                      width: { lg: 100, xs: 70 },
                       boxShadow: 10,
                     }}
                   >
-                    <Typography sx={{ fontSize: { xs: -3 } }}>
+                    <Typography
+                      sx={{ fontSize: { xs: -3 }, my: 2, color: "black" }}
+                    >
                       {pkgs.price}
                     </Typography>
                   </Avatar>
@@ -111,21 +122,19 @@ export default function Packages() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <Box display={"flex"} flexDirection={"row"}>
+                    <Box display={"flex"} flexDirection={"row"} my={2}>
                       <Typography
-                        variant="subtitle2"
+                        variant="subtitle1"
                         sx={{ whiteSpace: "normal", width: { lg: 100 } }}
                         mt={1}
+                        mx={1}
                       >
                         {pkgs.time}
                       </Typography>
-                      <Typography variant="subtitle2" mt={1}>
+                      <Typography variant="subtitle1" mx={1} mt={1}>
                         {pkgs.description}
                       </Typography>
                     </Box>
-                    <Typography variant="subtitle2" mt={1}>
-                      @ {pkgs.price}
-                    </Typography>
                   </Stack>
                   <IconButton
                     onClick={() => handleOpen(pkgs.id)}
@@ -136,7 +145,8 @@ export default function Packages() {
                       my: 2,
                       width: { lg: 80, xs: 60 },
                       height: 40,
-                      bgcolor: "#6E473B",
+                      bgcolor: "#0EA73C",
+                      color: "white",
                     }}
                   >
                     Buy
@@ -154,31 +164,55 @@ export default function Packages() {
                         id="modal-modal-title"
                         variant="h6"
                         mb={2}
+                        sx={{mx:{lg:10}}}
                         component="h2"
+                        color="white"
                       >
                         Enter phone to pay {pkgs.price}
                       </Typography>
                       <TextField
                         name="phone"
                         value={phone}
-                        label="Phone(+254xxxxxxxxx)"
+                        label="Phone(07-xxxx-xxxx)"
                         size="small"
+                        sx={{
+                          mx:{
+                            lg:11
+                          },
+                          marginTop: 2,
+                          width: { lg: 250, xs: 260 },
+                          "& label": { color: "white" }, // Label color
+                          "& input": { color: "white" }, // Input text color
+                          "& .MuiOutlinedInput-root": {
+                            "& fieldset": { borderColor: "white" }, // Border color
+                            "&:hover fieldset": { borderColor: "lightgray" }, // Border on hover
+                            "&.Mui-focused fieldset": { borderColor: "white" }, // Border when focused
+                          },
+                        }}
                         onChange={handleChange}
                         fullWidth
                       />
                       <IconButton
+                        size="small"
+                        type="submit"
                         sx={{
-                          mx: { lg: 16, xs: 7 },
-                          mt: { lg: 4, xs: 4 },
-                          borderRadius: 3,
-                          width: { lg: 100, xs: 200 },
-                          bgcolor: "#6E473B",
+                          mt: 4,
+                          mx: { lg: 11,xs:1 },
+                          background: "#2676C6",
+                          borderRadius: 2,
+                          width: { lg: 250, xs: 250 },
                         }}
                       >
-                        <Stack direction={"row"} spacing={1}>
-                          <span style={{fontSize:"1.2rem"}}>Pay</span>
-                          <SendHorizonalIcon />
-                        </Stack>
+                        <motion.div whileHover={{ scale: 1.1, rotate: -2 }}>
+                          <Stack
+                            direction={"row"}
+                            alignItems={"center"}
+                            spacing={2}
+                          >
+                            <span style={{ color: "white" }}>Pay Now</span>
+                            <SendHorizontalIcon />
+                          </Stack>
+                        </motion.div>
                       </IconButton>
                     </Box>
                   </Modal>

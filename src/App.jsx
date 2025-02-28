@@ -1,24 +1,10 @@
 import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
-import { AppProvider } from "@toolpad/core/AppProvider";
-import {
-  HouseWifi,
-  BellRing,
-  Wifi,
-  LogOut,
-  ShieldEllipsis,
-} from "lucide-react";
-import PropTypes from "prop-types";
-import {
-  Stack,
-  Divider,
-  Avatar,
-  Typography,
-  ListItemIcon,
-  ListItemText,
-  MenuItem,
-  MenuList,
-} from "@mui/material";
+import { AppProvider } from "@toolpad/core";
+import { createTheme } from "@mui/material/styles";
+import {jwtDecode} from "jwt-decode"; // Import the decoder
+import { HouseWifi, BellRing, Wifi, LogOut } from "lucide-react";
+import { CssBaseline } from "@mui/material";
 
 const NAVIGATION = [
   { kind: "header" },
@@ -43,17 +29,39 @@ const NAVIGATION = [
   },
 ];
 
+const token = localStorage.getItem("token");
 
-
+let user = null;
+if (token) {
+  try {
+    user = jwtDecode(token); // Decode JWT to get user details
+  } catch (error) {
+    console.error("Invalid token:", error);
+  }
+}
 
 const demoSession = {
   user: {
-    name: "Bharat Kashyap",
+    name: user?.phone || "Unknown", // Use optional chaining to avoid errors
     email: "bharatkashyap@outlook.com",
     image: "https://avatars.githubusercontent.com/u/19550456",
   },
 };
 
+console.log(demoSession);
+
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          background: "linear-gradient(to right,#3361A7, #E0EBF1)",
+          minHeight: "100vh",
+        },
+      },
+    },
+  },
+});
 function App() {
   const [session, setSession] = React.useState(demoSession);
   const authentication = React.useMemo(() => {
@@ -89,7 +97,9 @@ function App() {
       }}
       authentication={authentication}
       session={session}
+      theme={theme}
     >
+      <CssBaseline />
       <Outlet />
     </AppProvider>
   );

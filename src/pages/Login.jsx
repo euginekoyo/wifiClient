@@ -12,12 +12,14 @@ import {
   FormControl,
   InputLabel,
   Alert,
+  InputAdornment,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { LogIn, Shield, User } from "lucide-react";
+
+import { LogIn, Shield, User, PhoneCall } from "lucide-react";
 
 const modalStyle = {
   position: "fixed",
@@ -158,8 +160,11 @@ export default function OTPModal() {
           textAlign="center"
         >
           Already have an account?
-          <IconButton onClick={() => setOpenLoginModal(true)}>
-            <LogIn />
+          <IconButton
+            sx={{ borderRadius: 4, mx: { lg: 2 } }}
+            onClick={() => setOpenLoginModal(true)}
+          >
+            <Link style={{ fontSize: "1em" }}>Login</Link> <LogIn />
           </IconButton>
         </Typography>
 
@@ -168,6 +173,13 @@ export default function OTPModal() {
           fullWidth
           size="small"
           value={phone}
+          inputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <PhoneCall style={{ color: "#3F8B42" }} strokeWidth={2.75} />
+              </InputAdornment>
+            ),
+          }}
           onChange={(e) => setPhone(e.target.value)}
           disabled={otpSent}
           sx={{ mb: 2 }}
@@ -186,12 +198,6 @@ export default function OTPModal() {
                 User
               </Box>
             </MenuItem>
-            {/* <MenuItem value="admin">
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Shield size={16} style={{ marginRight: 8 }} />
-                Admin
-              </Box>
-            </MenuItem> */}
           </Select>
         </FormControl>
 
@@ -297,6 +303,16 @@ export default function OTPModal() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               sx={{ mt: 2 }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <PhoneCall
+                      style={{ color: "#3F8B42  " }}
+                      strokeWidth={2.75}
+                    />
+                  </InputAdornment>
+                ),
+              }}
             />
 
             <Button

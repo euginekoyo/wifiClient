@@ -12,9 +12,13 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
+
   ...theme.applyStyles("dark", {
     backgroundColor: "#1A2027",
+  }),
+  ...theme.applyStyles("light", {
+    backgroundColor: "#1A2027",
+    color: "white",
   }),
 }));
 
@@ -57,7 +61,7 @@ export default function Packages() {
                 sx={{
                   borderRadius: 2,
                   boxShadow: 5,
-                  my: { lg: 1.5 ,xs:1.5},
+                  my: { lg: 1.5, xs: 1.5 },
                   width: { lg: 430 },
                   height: { lg: 80 },
                 }}
@@ -75,23 +79,18 @@ export default function Packages() {
                   <Avatar
                     sx={{
                       ml: { lg: -2, xs: -2 },
-                      mr: 2,
+                      mr: { lg: 2, xs: 1 },
                       my: 2,
-                      width: { lg: 60 },
-                      borderRadius: { lg: 10, xs: 1 },
+                      borderRadius: { lg: 2, xs: 1 },
+                      width: { lg: 100, xs: 70 },
+                      height: { lg: 50, xs: 50 },
                       boxShadow: 10,
                     }}
                   >
                     <Typography
-                      sx={{
-                        fontSize: { xs: "0.75rem", sm: "0.875rem" }, // Responsive font size
-                        textWrap: "wrap", // Ensures text wraps
-                        whiteSpace: "normal", // Allows normal text wrapping
-                        wordBreak: "break-word", // Breaks long words if needed
-                        width: "100%", // Ensures it takes full container width
-                      }}
+                      sx={{ fontSize: { xs: -3 }, my: 2, color: "black" }}
                     >
-                      @ {pkgs.price}
+                      {pkgs.price}
                     </Typography>
                   </Avatar>
                   <Stack
@@ -119,11 +118,11 @@ export default function Packages() {
                       </Typography>
                       <Typography
                         sx={{
-                          fontSize: { xs: "1.5rem", sm: "0.875rem" }, // Responsive font size
+                          fontSize: { xs: "1.5rem", sm: "0.75rem" }, // Responsive font size
                           textWrap: "wrap", // Ensures text wraps
                           whiteSpace: "normal", // Allows normal text wrapping
                           wordBreak: "break-word", // Breaks long words if needed
-                          ml: 3,
+                          ml: 2,
                           mt: 2.5,
                         }}
                       >
@@ -138,10 +137,10 @@ export default function Packages() {
                       ml: "auto",
                       borderRadius: 3,
                       height: 50,
-                      my: 1,
-
-                      width: { lg: 80, xs: 60 },
-                      bgcolor: "#6E473B",
+                      my: 2,
+                      color: "white",
+                      width: { lg: 80, xs: 50 },
+                      background: "#2676C6",
                     }}
                   >
                     Buy

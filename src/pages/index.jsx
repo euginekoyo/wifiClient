@@ -7,64 +7,45 @@ import Ads from "./components/papersAds";
 import Packages from "./components/packages";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import CardActionArea from "@mui/material/CardActionArea";
-import { Fade, Slide } from "@mui/material";
+import { Slide } from "@mui/material";
+import Carousel from "./components/Carousel";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
-  ...theme.typography.body2,
+  ...theme.typography.body1,
   padding: theme.spacing(1),
   textAlign: "center",
+
   color: theme.palette.text.secondary,
   ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
+    backgroundColor: "#2A202B",
+  }),
+  ...theme.applyStyles("light", {
+    background: "linear-gradient(to right, #0A0A0B, #E0EBF1)",
   }),
 }));
 
 export default function Index3() {
   return (
     <>
-      <Fade in timeout={1000}>
-        <Card sx={{ marginBottom: 5, borderRadius: 5, boxShadow: 8 }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image="/src/assets/wifi2.jpg"
-              alt="SmartWIFI"
-              sx={{}}
-            />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h4"
-                mt={-8}
-                ml={{ xs: -1, lg: -1 }}
-                component="div"
-              >
-                SmartWIFI
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Fade>
+      <div>
+        <Carousel />
+      </div>
 
       <Box sx={{ width: "100%" }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Stack
-            spacing={{ xs: 1, sm: 2, md: 4 }}
+            spacing={{ xs: 1, sm: 2, md: 4, lg: 4 }}
             direction={{ xs: "column", sm: "row" }}
             divider={<Divider orientation="vertical" flexItem />}
           >
-            <Slide direction="left" in timeout={1500}>
-              <Item sx={{ borderRadius: 5, boxShadow: 8 }}>
-                <Ads />
-              </Item>
-            </Slide>
+            <Box sx={{mx:{lg:6 , xs:2},width: "100%"}}>
+              <Slide direction="left" in timeout={1500}>
+                <Item sx={{ borderRadius: 5, boxShadow: 8 }}>
+                  <Ads />
+                </Item>
+              </Slide>
+            </Box>
 
             <Slide direction="right" in timeout={1500}>
               <Item sx={{ borderRadius: 5, boxShadow: 8 }}>
