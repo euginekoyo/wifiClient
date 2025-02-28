@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import React from "react";
 import Box from "@mui/material/Box";
-import { IconButton, Paper, Typography } from "@mui/material";
+import { IconButton, Paper, Stack, Typography } from "@mui/material";
 import { SendHorizontalIcon } from "lucide-react";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -36,99 +36,131 @@ function Admin() {
   };
 
   return (
-    <motion.div whileHover={{ scale: 1.3 }}>
-      <Box
-        mb={4}
-        component={"form"}
-        onSubmit={handleSubmit}
-        mt={4}
+    <Box
+      mb={4}
+      component={"form"}
+      onSubmit={handleSubmit}
+      sx={{
+        height: 400,
+        mx: { xs: 1 },
+        width: { lg: 400, xs: 350 },
+        background: "black",
+        display: "flex",
+        flexDirection: "column",
+        borderRadius: 2,
+        boxShadow: 10,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Paper
         sx={{
-          height: 400,
-          mx: { xs: 2 },
-          width: { lg: 400, xs: 350 },
+          my: 2,
+          backgroundColor: { xs: "black" },
+          py: { lg: 1, xs: 1 },
+          width: 250,
           display: "flex",
-          flexDirection: "column",
-          borderRadius: 4,
-          boxShadow: 10,
-          alignItems: "center",
           justifyContent: "center",
+          fontFamily: "cursive",
         }}
       >
-        <Paper
-          sx={{
-            my: 2,
-            backgroundColor: { xs: "black" },
-            py: { lg: 1, xs: 1 },
-            width: 250,
-            display: "flex",
-            justifyContent: "center",
-            fontFamily: "cursive",
-          }}
-        >
-          <Typography variant="subtitle" color="white">
-            New package
-          </Typography>
-        </Paper>
-        <TextField
-          fullWidth
-          sx={{ marginTop: { xs: 2, lg: 2 }, width: { lg: 250, xs: 260 } }}
-          label=" Ative time"
-          onChange={handleChange}
-          size="small"
-          name="time"
-        />
-        <TextField
-          fullWidth
-          sx={{ marginTop: { xs: 2, lg: 2 }, width: { lg: 250, xs: 260 } }}
-          label=" Description"
-          onChange={handleChange}
-          size="small"
-          name="description"
-        />
-        <TextField
-          fullWidth
-          sx={{
-            marginTop: { xs: 2, lg: 2 },
-            mx: 2,
-            width: { lg: 250, xs: 260 },
-          }}
-          size="small"
-          onChange={handleChange}
-          label="price"
-          name="price"
-        />
-        <Box>
-          <TextField
-            fullWidth
-            sx={{
-              marginTop: { xs: 2, lg: 2 },
+        <Typography variant="subtitle" color="white">
+          New package
+        </Typography>
+      </Paper>
+      <TextField
+        fullWidth
+        sx={{
+          marginTop: 2,
+          width: { lg: 250, xs: 260 },
+          "& label": { color: "white" }, // Label color
+          "& input": { color: "white" }, // Input text color
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": { borderColor: "white" }, // Border color
+            "&:hover fieldset": { borderColor: "lightgray" }, // Border on hover
+            "&.Mui-focused fieldset": { borderColor: "white" }, // Border when focused
+          },
+        }}
+        label="Active time"
+        onChange={handleChange}
+        size="small"
+        name="time"
+      />
 
-              width: { lg: 250, xs: 260 },
-            }}
-            size="small"
-            onChange={handleChange}
-            label=" status"
-            name="status"
-          />
-        </Box>
-        <IconButton
-          size="small"
-          type="submit"
+      <TextField
+        fullWidth
+        sx={{
+          marginTop: 2,
+          width: { lg: 250, xs: 260 },
+          "& label": { color: "white" }, // Label color
+          "& input": { color: "white" }, // Input text color
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": { borderColor: "white" }, // Border color
+            "&:hover fieldset": { borderColor: "lightgray" }, // Border on hover
+            "&.Mui-focused fieldset": { borderColor: "white" }, // Border when focused
+          },
+        }}
+        label="Description"
+        onChange={handleChange}
+        size="small"
+        name="description"
+      />
+      <TextField
+        fullWidth
+        sx={{
+          marginTop: 2,
+          width: { lg: 250, xs: 260 },
+          "& label": { color: "white" }, // Label color
+          "& input": { color: "white" }, // Input text color
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": { borderColor: "white" }, // Border color
+            "&:hover fieldset": { borderColor: "lightgray" }, // Border on hover
+            "&.Mui-focused fieldset": { borderColor: "white" }, // Border when focused
+          },
+        }}
+        size="small"
+        onChange={handleChange}
+        label="Price"
+        name="price"
+      />
+      <Box>
+        <TextField
+          fullWidth
           sx={{
-            mt: 4,
-            mx: { lg: 10 },
-            backgroundColor: "#6E473B",
-            borderRadius: 2,
-            width: { lg: 200, xs: 150 },
+            marginTop: 2,
+            width: { lg: 250, xs: 260 },
+            "& label": { color: "white" }, // Label color
+            "& input": { color: "white" }, // Input text color
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": { borderColor: "white" }, // Border color
+              "&:hover fieldset": { borderColor: "lightgray" }, // Border on hover
+              "&.Mui-focused fieldset": { borderColor: "white" }, // Border when focused
+            },
           }}
-        >
-          <motion.div whileHover={{ scale: 1.1, rotate: -2 }}>
-            <span style={{ marginRight: 5, my: 4 }}>Add</span>
-            <SendHorizontalIcon style={{ marginTop: 5 }} />
-          </motion.div>
-        </IconButton>
+          size="small"
+          onChange={handleChange}
+          label="Status"
+          name="status"
+        />
       </Box>
-    </motion.div>
+      <IconButton
+        size="small"
+        type="submit"
+        sx={{
+          mt: 4,
+          background: "#2676C6",
+          borderRadius: 2,
+          width: { lg: 200, xs: 150 },
+        }}
+      >
+        <motion.div whileHover={{ scale: 1.1, rotate: -2 }}>
+          <Stack direction={"row"} alignItems={"center"} spacing={2}>
+            <span style={{ color: "white" }}>Add</span>
+            <SendHorizontalIcon />
+          </Stack>
+        </motion.div>
+      </IconButton>
+    </Box>
   );
 }
 

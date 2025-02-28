@@ -10,7 +10,7 @@ import {
   PackageOpen,
   PersonStanding,
   HouseWifi,
-  LogOut
+  LogOut,
 } from "lucide-react";
 import Admin from "./components/Admin";
 import Packages from "./components/Apackages";
@@ -21,11 +21,12 @@ import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 
 // Animation variants
 const fadeIn = {
-  hidden: { opacity: 0, scale: 0.9, y: 20 },
+  hidden: { opacity: 0, scale: 0.2, y: 1 },
   visible: {
     opacity: 1,
     scale: 1,
-    y: 0,
+    x:-10,
+    
     transition: { duration: 0.8, ease: "easeOut" },
   },
 };
@@ -48,7 +49,7 @@ const Navigation = [
 
 function AdminDashboard() {
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "#fff",
+    background: "linear-gradient(to right,#0A0A0B,#F4F4F5)",
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
@@ -79,7 +80,7 @@ function AdminDashboard() {
       <DashboardLayout
         branding={{ title: "Admin Dashboard", logo: <HouseWifi size={30} /> }}
       >
-        <Box mt={4} sx={{ mx: { lg: 16, xs: 4 }, borderRadius: 20 }}>
+        <Box mt={4} sx={{ mx: { lg: 14, xs: 4 }, borderRadius: 20 }}>
           <Grid
             container
             rowSpacing={1}
@@ -106,7 +107,7 @@ function AdminDashboard() {
                       sx={{
                         ml: { lg: -40, xs: -17 },
                         mt: -3,
-                        bgcolor: "#291C0E",
+                        background: "linear-gradient(to right,#F7F6F7,#050505)",
                         borderRadius: 2,
                         boxShadow: 10,
                         width: { lg: 150 },
@@ -121,6 +122,7 @@ function AdminDashboard() {
                         ml: { xs: 3 },
                         mt: { lg: -2, xs: -3 },
                         fontWeight: "bolder",
+                        color: "black",
                         fontSize: { lg: 25 },
                       }}
                     >
@@ -157,7 +159,8 @@ function AdminDashboard() {
                       sx={{
                         ml: { lg: -40, xs: -17 },
                         mt: -3,
-                        bgcolor: "#6E473B",
+                        background: "linear-gradient(to right,#F7F6F7,#050505)",
+
                         borderRadius: 2,
                         boxShadow: 10,
                         width: { lg: 150 },
@@ -172,6 +175,8 @@ function AdminDashboard() {
                         ml: { xs: 5 },
                         mt: { lg: -2, xs: -3 },
                         fontWeight: "bolder",
+                        color: "black",
+
                         fontSize: { lg: 25 },
                       }}
                     >
@@ -216,7 +221,8 @@ function AdminDashboard() {
                         mt: -3,
                         width: { lg: 150 },
                         height: { lg: 50 },
-                        bgcolor: "#A78D78",
+                        background: "linear-gradient(to right,#F7F6F7,#050505)",
+
                         boxShadow: 10,
                         borderRadius: 2,
                       }}
@@ -230,6 +236,8 @@ function AdminDashboard() {
                         ml: { xs: 5 },
                         mt: { lg: -2, xs: -3 },
                         fontWeight: "bolder",
+                        color: "black",
+
                         fontSize: { lg: 25 },
                       }}
                     >
@@ -267,7 +275,8 @@ function AdminDashboard() {
                       sx={{
                         ml: { lg: -40, xs: -17 },
                         mt: -3,
-                        bgcolor: "#BEB5A9",
+                        background: "linear-gradient(to right,#F7F6F7,#050505)",
+
                         borderRadius: 2,
                         boxShadow: 10,
                         width: { lg: 150 },
@@ -281,6 +290,8 @@ function AdminDashboard() {
                       sx={{
                         ml: { xs: 3 },
                         mt: { lg: -2, xs: -3 },
+                        color: "black",
+
                         fontWeight: "bolder",
                         fontSize: { lg: 25 },
                       }}
@@ -299,7 +310,8 @@ function AdminDashboard() {
                         sx={{
                           width: { lg: 200 },
                           ml: { lg: 10 },
-                          bgcolor: "#6E473B",
+                          color:"white",
+                          background:"#1F79D0",
                           borderRadius: 2,
                         }}
                       >
@@ -315,7 +327,7 @@ function AdminDashboard() {
 
         {/** Staggered Reveal for Packages and Admin */}
         <Stack
-          sx={{ my: 4, mx: { lg: 20, xs: 1 } }}
+          sx={{ my: 4, mx: { lg: 14, xs: 3 } }}
           direction={{ lg: "row", xs: "column" }}
           spacing={{ xs: 2, lg: 3 }}
         >
