@@ -50,7 +50,7 @@ const Carousel = () => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                sx={{ height: { xs: 120, sm: 200, lg: 300 } }}
+                sx={{ height: { xs: 120, sm: 200, lg: 300,backgroundRepeat:"no-repeat",backgroundAttachment:"fixed" } }}
                 image={item.src}
                 alt={item.title}
               />

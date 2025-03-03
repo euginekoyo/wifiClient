@@ -58,13 +58,17 @@ export default function Packages() {
   const handleClose = () => setOpen(false);
   const getPackages = async () => {
     try {
-      const response = await axios.get(`${API_URL}/packages`);
-      // console.table(response.data);
+      const token = localStorage.getItem("token"); 
+      console.log(token)
+      const response = await axios.get(`${API_URL}/packages`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setPackages(response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching packages:", error.response?.data || error);
     }
   };
+
   React.useEffect(() => {
     getPackages();
   }, []);
@@ -164,7 +168,7 @@ export default function Packages() {
                         id="modal-modal-title"
                         variant="h6"
                         mb={2}
-                        sx={{mx:{lg:10}}}
+                        sx={{ mx: { lg: 10 } }}
                         component="h2"
                         color="white"
                       >
@@ -176,8 +180,8 @@ export default function Packages() {
                         label="Phone(07-xxxx-xxxx)"
                         size="small"
                         sx={{
-                          mx:{
-                            lg:11
+                          mx: {
+                            lg: 11,
                           },
                           marginTop: 2,
                           width: { lg: 250, xs: 260 },
@@ -197,7 +201,7 @@ export default function Packages() {
                         type="submit"
                         sx={{
                           mt: 4,
-                          mx: { lg: 11,xs:1 },
+                          mx: { lg: 11, xs: 1 },
                           background: "#2676C6",
                           borderRadius: 2,
                           width: { lg: 250, xs: 250 },
