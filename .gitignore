@@ -11,6 +11,14 @@ node_modules
 dist
 dist-ssr
 *.local
+migration
+*.sqlite
+*.sqlite3
+*.log
+*.log.*
+*.log-*
+*.log/*
+*.log.*
 
 # Editor directories and files
 .vscode/*

@@ -60,9 +60,9 @@ export default function OTPModal() {
       const response = await axios.get(`${API_URL}/user/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
+      console.log("Headers Sent:", response.config.headers);  
       if (response.data.role === "admin") {
-        navigate("/layout/admin/dashboard");
+        navigate("/admin/dashboard");
       } else {
         navigate("/layout/dashboard");
       }
@@ -196,6 +196,12 @@ export default function OTPModal() {
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <User size={16} style={{ marginRight: 8 }} />
                 User
+              </Box>
+            </MenuItem>
+            <MenuItem value="admin">
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <User size={16} style={{ marginRight: 8 }} />
+                admin
               </Box>
             </MenuItem>
           </Select>

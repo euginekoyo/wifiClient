@@ -39,19 +39,27 @@ export default function Index3() {
             direction={{ xs: "column", sm: "row" }}
             divider={<Divider orientation="vertical" flexItem />}
           >
-            <Box sx={{mx:{lg:6 , xs:2},width: "100%"}}>
+            <Box sx={{ width: "100%" }}>
               <Slide direction="left" in timeout={1500}>
-                <Item sx={{ borderRadius: 5, boxShadow: 8 }}>
+                <Item
+                  sx={{
+                    borderRadius: 3,
+                    boxShadow: 8,
+                    mx: { xs: 1.5 },
+                    width: { xs: 350 },
+                  }}
+                >
                   <Ads />
                 </Item>
               </Slide>
             </Box>
-
-            <Slide direction="right" in timeout={1500}>
-              <Item sx={{ borderRadius: 5, boxShadow: 8 }}>
-                <Packages />
-              </Item>
-            </Slide>
+            <Box sx={{ width: "100%" }}>
+              <Slide direction="right" in timeout={1500}>
+                <Item sx={{ borderRadius: 3, boxShadow: 8 }}>
+                  <Packages />
+                </Item>
+              </Slide>
+            </Box>
           </Stack>
         </Grid>
       </Box>
