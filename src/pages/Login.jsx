@@ -60,15 +60,15 @@ export default function OTPModal() {
       const response = await axios.get(`${API_URL}/user/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("Headers Sent:", response.config.headers);  
       if (response.data.role === "admin") {
         navigate("/admin/dashboard");
       } else {
         navigate("/layout/dashboard");
       }
     } catch (error) {
-      // Token invalid or expired, clear it
-      localStorage.removeItem("token");
+      console.error("Invalid token:", error);
+      localStorage.removeItem("token"); // Clear invalid token
+      navigate("/"); // Redirect to login page
     }
   };
 
@@ -87,7 +87,8 @@ export default function OTPModal() {
       const response = await axios.post(`${API_URL}/login`, { phone });
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
-
+        localStorage.setItem("user", response.data.user);
+        console.log(response.data.user);
         // Redirect based on role
         if (response.data.role === "admin") {
           navigate("/admin/dashboard");
@@ -146,17 +147,18 @@ export default function OTPModal() {
         component="form"
         onSubmit={handleSendOtp}
         sx={{
-          borderRadius: 5,
+          borderRadius: 6,
           width: { lg: 400, xs: 350 },
           mx: { lg: 60, md: 40, xs: 2 },
           px: 5,
           py: 4,
-          boxShadow: 3,
+          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
+          bgcolor: "background.paper",
         }}
       >
         <Typography
           my={4}
-          sx={{ fontSize: { lg: "0.95rem", xs: "0.85rem" } }}
+          sx={{ fontSize: { lg: "1rem", xs: "0.9rem" }, fontWeight: "bold" }}
           textAlign="center"
         >
           Already have an account?
@@ -164,7 +166,8 @@ export default function OTPModal() {
             sx={{ borderRadius: 4, mx: { lg: 2 } }}
             onClick={() => setOpenLoginModal(true)}
           >
-            <Link style={{ fontSize: "1em" }}>Login</Link> <LogIn />
+            <Link style={{ fontSize: "1em", color: "#3B82F6" }}>Login</Link>{" "}
+            <LogIn />
           </IconButton>
         </Typography>
 
@@ -173,19 +176,19 @@ export default function OTPModal() {
           fullWidth
           size="small"
           value={phone}
-          inputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <PhoneCall style={{ color: "#3F8B42" }} strokeWidth={2.75} />
-              </InputAdornment>
-            ),
-          }}
           onChange={(e) => setPhone(e.target.value)}
           disabled={otpSent}
           sx={{ mb: 2 }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <PhoneCall style={{ color: "#3B82F6" }} strokeWidth={2.75} />
+              </InputAdornment>
+            ),
+          }}
         />
 
-        <FormControl fullWidth size="small" disabled={otpSent}>
+        <FormControl fullWidth size="small" disabled={otpSent} sx={{ mb: 2 }}>
           <InputLabel>Account Type</InputLabel>
           <Select
             value={role}
@@ -201,7 +204,7 @@ export default function OTPModal() {
             <MenuItem value="admin">
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <User size={16} style={{ marginRight: 8 }} />
-                admin
+                Admin
               </Box>
             </MenuItem>
           </Select>
@@ -216,6 +219,8 @@ export default function OTPModal() {
             width: "100%",
             bgcolor: otpSent ? "grey.400" : "primary.main",
             color: "white",
+            textTransform: "none",
+            fontWeight: "bold",
           }}
         >
           {otpSent ? "OTP Sent" : "Send OTP"}
@@ -253,6 +258,13 @@ export default function OTPModal() {
               value={otpCode}
               onChange={(e) => setOtpCode(e.target.value)}
               sx={{ mt: 2 }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Shield style={{ color: "#3F8B42" }} strokeWidth={2.75} />
+                  </InputAdornment>
+                ),
+              }}
             />
 
             <Typography variant="body2" sx={{ mt: 2 }}>
