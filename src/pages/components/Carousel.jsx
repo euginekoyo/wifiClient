@@ -5,11 +5,13 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  Box,
 } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css/navigation";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 
 const images = [
   { src: "/src/assets/wifi.jpg", title: "Fast Connection" },
@@ -23,7 +25,7 @@ const images = [
   },
   { src: "/src/assets/wifi6.jpg", title: "Work Smart" },
   { src: "/src/assets/wifi7.jpg", title: "Stay True" },
-  { src: "/src/assets/wif8.jpg", title: "Reconnect with your loved ones" }, // Fixed filename
+  { src: "/src/assets/wifi8.jpg", title: "Reconnect with Your Loved Ones" }, // Fixed filename
 ];
 
 const Carousel = () => {
@@ -32,39 +34,52 @@ const Carousel = () => {
       spaceBetween={20}
       slidesPerView={1}
       pagination={{ clickable: true }}
-      autoplay={{ delay: 2500, disableOnInteraction: false }} // Prevent autoplay from stopping
-      modules={[Pagination, Autoplay]}
+      navigation={true}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
+      modules={[Pagination, Autoplay, Navigation]}
       loop={true}
-      style={{ width: "100%", padding: "20px 0" }}
+      style={{ width: "100%", padding: "10px 0" }}
     >
       {images.map((item, index) => (
         <SwiperSlide key={index}>
           <Card
             sx={{
-              marginBottom: 5,
-              borderRadius: 5,
-              boxShadow: 8,
-              background: "linear-gradient(to right, #2B2A2A, #EFEEEF)",
+              position: "relative",
+              borderRadius: 4,
+              boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)",
+              overflow: "hidden",
+              transition: "transform 0.3s ease-in-out",
+              "&:hover": { transform: "scale(1.02)" },
             }}
           >
             <CardActionArea>
               <CardMedia
                 component="img"
-                sx={{ height: { xs: 120, sm: 200, lg: 300,backgroundRepeat:"no-repeat",backgroundAttachment:"fixed" } }}
+                sx={{
+                  height: { xs: 180, sm: 250, md: 350 },
+                  filter: "brightness(0.8)",
+                  transition: "filter 0.3s ease-in-out",
+                  "&:hover": { filter: "brightness(1)" },
+                }}
                 image={item.src}
                 alt={item.title}
               />
-              <CardContent sx={{ display: "flex", justifyContent: "center" }}>
-                <Typography
-                  variant="subtitle1"
-                  fontWeight={"bolder"}
-                  mt={-2}
-                  ml={1}
-                  component="div"
-                >
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  width: "100%",
+                  background: "rgba(0, 0, 0, 0.6)",
+                  color: "#fff",
+                  textAlign: "center",
+                  py: 1,
+                  backdropFilter: "blur(5px)",
+                }}
+              >
+                <Typography variant="h6" fontWeight="bold">
                   {item.title}
                 </Typography>
-              </CardContent>
+              </Box>
             </CardActionArea>
           </Card>
         </SwiperSlide>

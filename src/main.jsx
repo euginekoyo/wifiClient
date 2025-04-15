@@ -8,20 +8,21 @@ import Login from "./pages/Login.jsx";
 import Layout from "./Layout/Layout.jsx";
 import Notification from "./pages/notification.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
       { path: "/", element: <Login /> },
-      { path: "/logout", element: <Login /> },
-      { path: "admin/dashboard", element: <AdminDashboard /> }, // ✅ Matches /layout/dashboard
+      { path: "/logout", element: <Login /> }, // Redirect to login page on logout
+      { path: "admin/dashboard", element: <AdminDashboard /> },
       {
         path: "layout",
         element: <Layout />,
         children: [
-          { path: "dashboard", element: <Dashboard /> }, // ✅ Matches /layout/dashboard
-          { path: "notification", element: <Notification /> }, // ✅ Matches /layout/notification
+          { path: "dashboard", element: <Dashboard /> },
+          { path: "notification", element: <Notification /> },
         ],
       },
     ],
